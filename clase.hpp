@@ -33,4 +33,25 @@ public:
             }
         }
     }
+    int getValor(int r, int c)const{return matriz[r][c];}
+    void setValor(int r, int c, int val){
+        matriz[r][c]= val;
+        if(val==0){
+            filaVacia= r;
+            colVacia= c;
+        }
+    }
+    int getfilaVacia(){return filaVacia;}
+    int getcolumnaVacia(){return colVacia;}
+    bool operator==(const Tablero &x)const{
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3;j++){
+                if(matriz[i][j] != x.matriz[i][j]) return false;  
+                } 
+            }
+            return true;
+        }
+    
+    
+
 };
