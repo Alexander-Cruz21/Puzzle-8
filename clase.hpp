@@ -70,4 +70,15 @@ public:
         int dist =  abs(r - filaVacia) + abs(c - colVacia);
         return (dist == 1);
     }
+
+    bool movPieza(int r, int c){
+        if(!movValido(r,c)) return false;
+        matriz[filaVacia][colVacia] = matriz[r][c];
+        matriz[r][c] = 0;
+        filaVacia = r;
+        colVacia = c;
+        return true;
+    }
+
+    
 };
