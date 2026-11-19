@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 class Tablero{
@@ -47,11 +48,26 @@ public:
         for(int i=0; i<3; i++){
             for(int j=0; j<3;j++){
                 if(matriz[i][j] != x.matriz[i][j]) return false;  
-                } 
-            }
-            return true;
+            } 
         }
+        return true;
+    }
     
-    
+    void buscarFicha(int ficha, int&r, int &c) const {
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3;j++){
+                if(matriz[i][j] == ficha){
+                    r = i;
+                    c = j;
+                    return;
+                }
+            } 
+        }
+    }
 
+    bool movValido(int r, int c) const {
+        if(r < 0 || r >= 3 || c < 0 || c >= 3) return false;
+        int dist =  abs(r - filaVacia) + abs(c - colVacia);
+        return (dist == 1);
+    }
 };
