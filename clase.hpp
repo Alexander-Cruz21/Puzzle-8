@@ -79,6 +79,29 @@ public:
         colVacia = c;
         return true;
     }
+    void mezclar (int numMovimientos){
+        int direcFil[]= {-1,1,0,0};
+        int direcCol[]= {0,0, -1, 1};
+        int ultimaFila= -1, ultimaColumna= -1;
+        for(int i=0; i<numMovimientos; i++){
+            vector<pair<int,int>> vecinos; 
+            for(int direc=0; direc<4; direc++){
+                int numFIL= filaVacia + direcFil[direc];
+                int numCOL= colVacia + direcCol[direc];
+                if(numFIL >=0 && numFIL <3 && numCOL>=0 && numCOL<3 ){
+                    if(numFIL!=ultimaFila|| numCOL !=ultimaColumna){
+                        vecinos.push_back({numFIL, numCOL});
+                    }
+                }
+            }
+            if(!vecinos.empty()){
+                int casillaVec = rand() % vecinos.size();
+                ultimaFila= filaVacia;
+                ultimaColumna= colVacia;
+                movPieza(vecinos[casillaVec].first, vecinos[casillaVec].second);
+            }
 
+        }
+    }
     
 };
