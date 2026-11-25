@@ -103,5 +103,32 @@ public:
 
         }
     }
+    string serializar()const{
+        string cad="";
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                cad+= to_string(matriz[i][j]);
+            }
+        }
+        return cad;
+    }
+    int contarInversiones()const {
+        vector<int> lineal;
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                if(matriz[i][j]!=0) lineal.push_back(matriz[i][j]);         
+            }
+        }
+        int inversiones=0;
+         for(size_t i=0; i<lineal.size(); i++){
+            for(size_t j= i+1; j<lineal.size(); j++){
+                if(lineal[i]>lineal[j])inversiones++;
+            }
+        }
+        return inversiones;
+    }
+    bool tieneSolucion(const Tablero &x){
+        return (this->contarInversiones()%2)==(x.contarInversiones()%2);
+    }
     
 };
